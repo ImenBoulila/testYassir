@@ -1,0 +1,55 @@
+appId: org.wikipedia
+name: Sign In with exist user
+tags:
+  - smoke
+ 
+---
+
+- runFlow: ../common/common_login.yaml
+- tapOn:
+    id: "${output.element.login_user}"
+- inputText: "${output.data.user}"
+- tapOn:
+    id: "${output.element.password_user}"
+- inputText: "${output.data.password}"
+- tapOn:
+    id: "${output.element.eye_icone}"
+- assertVisible: "${output.data.password}"
+- assertVisible:
+    id: "${output.element.login_button_connect}"
+    enabled: true
+- tapOn:
+    id: "${output.element.login_button_connect}"
+- runFlow:
+    when:
+      visible: 
+        id: "${output.element.notifcation}"
+    commands:
+      - assertVisible:
+         id: "${output.element.notifcation}"
+         id: "${output.element.message}"
+         id: "${output.element.checkbox}"
+      - tapOn:
+         point: "72%,67%"
+- assertVisible:
+    id: "${output.element.toolbar}"
+- tapOn:
+    id: "${output.element.icone}"
+    index: 4
+- extendedWaitUntil:
+    visible: "${output.data.user}"
+    timeout: 10000  
+- assertVisible:
+    id: "${output.element.container}"
+    id: "${output.element.talk}"
+    id: "${output.element.list}"
+    id: "${output.element.place_id}"
+    id: "${output.element.setting_id}"
+    id: "${output.element.donation_id}"
+
+
+
+
+
+
+

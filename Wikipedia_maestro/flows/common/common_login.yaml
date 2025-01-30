@@ -1,0 +1,80 @@
+appId: org.wikipedia
+tags:
+  - smoke
+---
+
+- clearState
+- launchApp
+- runScript: ../../script/element.js
+- runScript: ../../script/dataTest.js
+- runFlow:
+    when:
+      visible: 
+        id: "${output.element.notifcation}"
+    commands:
+      - assertVisible:
+         id: "${output.element.notifcation}"
+         id: "${output.element.message}"
+         id: "${output.element.checkbox}"
+      - tapOn:
+         point: "72%,67%"
+
+- assertVisible:
+    id: "${output.element.photo}"
+    id: "${output.element.title_id}"
+    id: "${output.element.view}"
+    id: "${output.element.second_view}"
+    id: "${output.element.lang}"
+    id: "${output.element.add_lang}"
+    id: "${output.element.skip}"
+    id: "${output.element.continue}"
+- tapOn:
+    id: "${output.element.skip}"
+- assertVisible:
+    id: "${output.element.title_id}"
+- assertVisible:
+    id: "${output.element.container_research}"
+- assertVisible:
+    id: "${output.element.explorer}"
+- assertVisible:
+    id: "${output.element.icone}"
+    index: 0
+    index: 1
+    index: 2
+    index: 3
+    index: 4
+- assertVisible:
+    id: "${output.element.small_label_navBarre}"
+    index: 0
+    index: 1
+    index: 2
+- tapOn:
+    id: "${output.element.icone}"
+    index: 4
+- tapOn:
+    id: "${output.element.login_button}"
+- assertVisible:
+    id: "${output.element.action_bar}"
+    id: "${output.element.username}"
+    id: "${output.element.password}"
+    id: "${output.element.confirm_password}"
+    id: "${output.element.email}"
+    id: "${output.element.recomandation}"
+    id: "${output.element.submit_button}"
+    id: "${output.element.connect_button}"
+    id: "${output.element.forget_password_link}"
+    id: "${output.element.policy_link}" 
+- assertVisible:
+    id: "${output.element.eye_icone}"
+    index: 0
+    index: 1
+- tapOn:
+    id: "${output.element.connect_button}"
+- assertVisible:
+    id: "${output.element.action_bar}"
+    id: "${output.element.join_wikipedia}"
+    id: "${output.element.forget_password_link}"
+    id: "${output.element.policy_link}"
+- assertVisible:
+    id: "${output.element.login_button_connect}"
+    enabled: false

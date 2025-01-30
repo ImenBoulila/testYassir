@@ -1,0 +1,53 @@
+appId: org.wikipedia
+name: Make a reasearch
+tags:
+  - smoke
+ 
+---
+
+- runFlow: ../Authentification/login.yaml
+- tapOn:
+    id: "${output.element.touch_outside}"
+
+- tapOn:
+    id: "${output.element.container_research}"
+- runFlow:
+    when:
+      visible: 
+        id: "${output.element.notifcation}"
+    commands:
+      - assertVisible:
+         id: "${output.element.notifcation}"
+         id: "${output.element.message}"
+         id: "${output.element.checkbox}"
+      - tapOn:
+         point: "72%,67%"
+- inputText: "${output.data.research}"
+- scrollUntilVisible:
+    element:
+      text: "Liste des microprocesseurs Intel"
+    direction: DOWN
+    timeout: 70000
+- tapOn:
+    text: "Liste des microprocesseurs Intel"
+- assertVisible:
+    id: "${output.element.page_content}"
+- tapOn: "Revenir en haut de la page"
+- tapOn: "Revenir en haut de la page"
+- tapOn:
+    id: "${output.element.icone}"
+    index: 4
+- tapOn:
+    id: "${output.element.setting_id}"
+- scrollUntilVisible:
+    element:
+      id: "${output.element.logout}"
+    direction: DOWN
+    timeout: 70000
+- tapOn:
+    id: "${output.element.logout}"
+- tapOn:
+    id: "${output.element.logount_button}"
+- assertVisible:
+    id: "${output.element.toolbar}"
+

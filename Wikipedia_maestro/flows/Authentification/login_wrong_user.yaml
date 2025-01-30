@@ -1,0 +1,67 @@
+appId: org.wikipedia
+name: Sign In with wrong user
+tags:
+  - smoke
+ 
+---
+#Wrong password
+- runFlow: ../common/common_login.yaml
+- tapOn:
+    id: "${output.element.login_user}"
+- inputText: "${output.data.user}"
+- tapOn:
+    id: "${output.element.password_user}"
+- inputText: "${output.data.wrong_password}"
+- tapOn:
+    id: "${output.element.eye_icone}"
+- assertVisible: "${output.data.wrong_password}"
+- tapOn:
+    id: "${output.element.login_button_connect}"
+- assertVisible:
+    id: "${output.element.alert_message}"
+    enabled: true
+- assertNotVisible:
+    id: "${output.element.alert_message}"
+   
+#Wrong user
+- tapOn:
+    id: "${output.element.login_user}"
+- eraseText
+- inputText: "${output.data.wrong_user}"
+- tapOn:
+    id: "${output.element.password_user}"
+- eraseText
+- inputText: "${output.data.password}"
+- tapOn:
+    id: "${output.element.eye_icone}"
+- assertVisible: "${output.data.password}"
+- tapOn:
+    id: "${output.element.login_button_connect}" 
+- assertVisible:
+    id: "${output.element.alert_message}"
+    enabled: true
+
+
+#Wrong user and password
+- tapOn:
+    id: "${output.element.login_user}"
+- eraseText
+- inputText: "${output.data.wrong_user}"
+- tapOn:
+    id: "${output.element.password_user}"
+- eraseText
+- inputText: "${output.data.wrong_password}"
+- tapOn:
+    id: "${output.element.eye_icone}"
+- assertVisible: "${output.data.wrong_password}"
+- tapOn:
+    id: "${output.element.login_button_connect}"
+- assertVisible:
+    id: "${output.element.alert_message}"
+    enabled: true
+- assertNotVisible:
+    id: "${output.element.alert_message}"
+
+
+
+

@@ -1,0 +1,15 @@
+# config.yaml
+
+flows:
+   - "Searching/make_research.yaml"
+   - "Authentification/login_wrong_user.yaml"
+  
+   
+
+executionOrder:
+    continueOnFailure: true 
+    flowsOrder:
+       - Make a reasearch
+       - Sign In with wrong user
+     
+       
